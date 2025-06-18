@@ -7,19 +7,23 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(false);
     long long int n;
     cin >> n;   
-    long long int arr[n],copy[n];
-    long long all = 0;
+    long long int arr[n];
+    long long int all = 0;
     long long int cnt = 0;
     for(int i=0;i<n;i++)
     {
         cin >> arr[i];
-        copy[i] = arr[i];
         all += arr[i];
+    }
+    if(all%4!=0)
+    {
+        cout << "0";
+        return 0;
     }
     all = all/4;
     long long int now = 0;
-    long int one=0,two=0,thr=0;
-    for(int i=0;i<n;i++)
+    long long int one=0,two=0,thr=0;
+    for(int i=0;i<n-1;i++)
     {
         now += arr[i];
         if(all == 0) // 모든 인풋이 0일때
@@ -33,7 +37,7 @@ int main(int argc, char const *argv[])
         {
             if(now%all==0)
             {
-                int dur = now/all;
+                long long int dur = now/all;
                 //자를 수 있는 구간 nCr x --> 구간별 개수의 곱
                 if(dur==1) //p1개수 누적
                 {
@@ -54,13 +58,16 @@ int main(int argc, char const *argv[])
             }
         }
     }
-    if(cnt < 3) cout << "0";
+    if(cnt < 3)
+    {
+        cout << "0";
+    }
     else
     {
         if(all == 0)
         { //어디서 잘라도 상관 x --> nCr
             //0일때는 6개면 6개가 찍히니 빼고 시작해야함
-            cout << (cnt-1)*(cnt-2)*(cnt-3)/6;
+            cout << (cnt)*(cnt-1)*(cnt-2)/6;
         }
         else
         {
