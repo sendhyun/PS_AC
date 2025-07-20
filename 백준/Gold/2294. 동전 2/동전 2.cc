@@ -24,9 +24,9 @@ int main()
         for(int j=0;j<n;j++)
         {
             if(i<coin[j]) continue;
-            if(dp[i-coin[j]]<max) max = dp[i-coin[j]];
+            if(dp[i-coin[j]]<max) max = dp[i-coin[j]]+1;
         }
-        dp[i] = max+1;
+        dp[i] = max;
     }
     if(dp[k]>100000)
     {
